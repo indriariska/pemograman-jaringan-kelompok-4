@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - Senior Full Stack Developer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1a2847;
+            --accent-primary: #6366f1;
+            --accent-secondary: #06b6d4;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--primary-bg); color: var(--text-primary); overflow-x: hidden; }
+
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+            position: sticky; top: 0; z-index: 50;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            position: relative; color: var(--text-secondary); transition: color 0.3s ease;
+        }
+
+        .nav-link:hover { color: var(--text-primary); }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -6px; left: 0;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Contact Form Styles */
+        .contact-card {
+            background: rgba(26, 40, 71, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+        }
+
+        .form-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+            outline: none;
+        }
+
+        .info-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .hero-glow {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(80px); z-index: 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">&lt;/&gt;</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">DevPortfolio</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/projects/" class="nav-link">Projects</a>
+                    <a href="/services/" class="nav-link">Services</a>
+                    <a href="/contact/" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-20 pb-12 overflow-hidden">
+        <div class="hero-glow -top-20 -right-20"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6" data-aos="fade-up">
+                Let's Work <span class="gradient-text">Together</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Punya ide menarik atau butuh bantuan teknis? Jangan ragu untuk menghubungi saya. Saya siap membantu mewujudkan proyek Anda.
+            </p>
+        </div>
+    </section>
+
+    <section class="pb-24 relative">
+        <div class="hero-glow -bottom-20 -left-20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
+                
+                <div class="lg:col-span-5 space-y-8" data-aos="fade-right">
+                    <div class="contact-card p-8">
+                        <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="info-icon text-white"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-sm text-slate-400">Email saya</p>
+                                    <p class="text-lg font-semibold">raihan@example.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="info-icon text-white"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <p class="text-sm text-slate-400">WhatsApp / Telp</p>
+                                    <p class="text-lg font-semibold">+62 812 3456 7890</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="info-icon text-white"><i class="fas fa-location-dot"></i></div>
+                                <div>
+                                    <p class="text-sm text-slate-400">Lokasi</p>
+                                    <p class="text-lg font-semibold">Indonesia (WIB)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <p class="text-sm text-slate-400 mb-4">Temukan saya di</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-indigo-600 transition-colors"><i class="fab fa-github"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-blue-600 transition-colors"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <div class="contact-card p-8 md:p-10">
+                        <form action="#" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-slate-300">Nama Lengkap</label>
+                                    <input type="text" placeholder="John Doe" class="form-input w-full px-4 py-3 rounded-xl">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium text-slate-300">Alamat Email</label>
+                                    <input type="email" placeholder="john@example.com" class="form-input w-full px-4 py-3 rounded-xl">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-300">Subjek</label>
+                                <input type="text" placeholder="Kerja Sama Proyek" class="form-input w-full px-4 py-3 rounded-xl">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-300">Pesan Anda</label>
+                                <textarea rows="5" placeholder="Ceritakan detail proyek Anda..." class="form-input w-full px-4 py-3 rounded-xl"></textarea>
+                            </div>
+
+                            <button type="submit" class="cta-button w-full py-4 rounded-xl font-bold text-white flex items-center justify-center space-x-2">
+                                <span>Kirim Pesan</span>
+                                <i class="fas fa-paper-plane text-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 text-center">
+        <p class="text-slate-500">&copy; 2026 DevPortfolio. Built with <i class="fas fa-heart text-red-500"></i> using Tailwind.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>

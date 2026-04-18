@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Senior Full Stack Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1a2847;
+            --accent-primary: #6366f1;
+            --accent-secondary: #06b6d4;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            animation: slideDownIn 0.6s ease-out;
+        }
+
+        @keyframes slideDownIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Navbar Link Animation */
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Background Effects */
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.1) 70%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-glow-1 {
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .hero-glow-2 {
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 2s;
+        }
+
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-color: var(--accent-secondary);
+            color: white;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Project Card */
+        .project-card {
+            background: rgba(26, 40, 71, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card.hidden-project {
+            display: none;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 24px 60px rgba(6, 182, 212, 0.25);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-image::after {
+            transform: translateX(100%);
+        }
+
+        .project-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            text-transform: uppercase;
+        }
+
+        .status-badge.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .status-badge.completed {
+            background: rgba(99, 102, 241, 0.15);
+            color: #6366f1;
+        }
+
+        .project-description {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-size: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            margin-bottom: 1.5rem;
+            font-size: 13px;
+        }
+
+        .project-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .project-stat i {
+            color: var(--accent-secondary);
+        }
+
+        .project-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid;
+            text-align: center;
+        }
+
+        .project-btn.view-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-color: transparent;
+            color: white;
+        }
+
+        .project-btn.view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-btn.code-btn {
+            background: transparent;
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .project-btn.code-btn:hover {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.05) 0%, rgba(26, 40, 71, 0.5) 100%);
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: var(--accent-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-color: var(--accent-secondary);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Container Custom */
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* AOS Custom Settings */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+            transition-duration: 0.6s;
+            transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+
+        /* Filter Animation */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            h2 {
+                font-size: 1.875rem !important;
+            }
+
+            .filter-btn {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+        }
+
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        /* Spotlight Effect */
+        .spotlight {
+            position: relative;
+        }
+
+        .spotlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.3), transparent 80%);
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 16px;
+        }
+
+        .spotlight:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container-custom">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">&lt;/&gt;</span>
+                    </div>
+                    <span class="text-xl font-bold text-white hidden sm:inline">DevPortfolio</span>
+                </div>
+                
+                <div class="flex items-center space-x-8">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/projects/" class="nav-link">Projects</a>
+                    <a href="/services/" class="nav-link">Services</a>
+                    <a href="/contact/" class="nav-link">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="sm:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden sm:hidden pb-4 border-t border-slate-700">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/projects/" class="nav-link">Projects</a>
+                    <a href="/services/" class="nav-link">Services</a>
+                    <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Hero Section -->
+    <section class="hero-bg relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                    My <span class="gradient-text">Projects</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    A curated collection of my recent work showcasing expertise in full-stack development, web design, and blockchain innovation.
+                </p>
+            </div>
+
+            <div class="flex justify-center items-center gap-4 flex-wrap mt-12" data-aos="fade-up" data-aos-delay="100">
+                <span class="text-slate-400 font-medium">Filter by:</span>
+                <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+                <button class="filter-btn" onclick="filterProjects('web-app')">Web App</button>
+                <button class="filter-btn" onclick="filterProjects('smart-contract')">Smart Contract</button>
+                <button class="filter-btn" onclick="filterProjects('dashboard')">Dashboard</button>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 relative">
+    <div class="container-custom">
+
+        <div id="projectsGrid" class="projects-grid">
+
+            {% for project in projects %}
+            <div class="project-card spotlight" data-category="{{ project.category }}" data-aos="fade-up">
+
+                <!-- Image / Icon -->
+                <div class="project-image">
+                    <i class="fas fa-code text-indigo-400"></i>
+                </div>
+
+                <div class="project-content">
+
+                    <!-- Header -->
+                    <div class="project-header">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">
+                                {{ project.title }}
+                            </h3>
+                            <div class="category-badge">
+                                {{ project.category }}
+                            </div>
+                        </div>
+
+                        <span class="status-badge 
+                            {% if project.status == 'active' %}active{% else %}completed{% endif %}">
+                            {{ project.status }}
+                        </span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-slate-400 text-sm project-description">
+                        {{ project.description }}
+                    </p>
+
+                    <!-- Optional Tech -->
+                    {% if project.tech_stack %}
+                    <div class="tech-stack">
+                        {% for tech in project.tech_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Footer Buttons -->
+                    <div class="project-footer">
+
+                        {% if project.demo_url %}
+                        <a href="{{ project.demo_url }}" target="_blank"
+                           class="project-btn view-btn">
+                            <i class="fas fa-external-link-alt mr-1"></i> Live
+                        </a>
+                        {% endif %}
+
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank"
+                           class="project-btn code-btn">
+                            <i class="fab fa-github mr-1"></i> Code
+                        </a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+            <div class="no-results">
+                <p>Tidak ada project tersedia</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+    <!-- Project Stats -->
+    <section class="py-24 relative overflow-hidden bg-opacity-50 bg-slate-900">
+        <div class="hero-glow hero-glow-1" style="top: auto; bottom: -100px;"></div>
+        
+        <div class="container-custom relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="text-4xl font-bold gradient-text mb-2">50+</div>
+                    <p class="text-slate-400">Total Projects</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl font-bold gradient-text mb-2">$15M+</div>
+                    <p class="text-slate-400">Project Value</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl font-bold gradient-text mb-2">30+</div>
+                    <p class="text-slate-400">Happy Clients</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl font-bold gradient-text mb-2">100%</div>
+                    <p class="text-slate-400">Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="container-custom relative z-10 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Have a Project in Mind?
+            </h2>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
+                Let's collaborate and bring your vision to life with cutting-edge technology and expert execution.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="cta-button text-lg px-10 py-4">
+                    <i class="fas fa-envelope mr-2"></i>Start a Project
+                </button>
+                <button class="px-10 py-4 rounded-lg border-2 border-cyan-500 text-cyan-400 font-semibold hover:bg-cyan-500 hover:text-white transition-all">
+                    <i class="fas fa-calendar mr-2"></i>Schedule Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-custom">
+            <div class="py-16">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">DevPortfolio</h3>
+                        <p class="text-slate-400 text-sm">Building exceptional digital experiences with modern technology.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+                        <ul class="space-y-2 text-slate-400 text-sm">
+                            <li><a href="index.html" class="hover:text-indigo-400 transition">Home</a></li>
+                            <li><a href="projects.html" class="hover:text-indigo-400 transition">Projects</a></li>
+                            <li><a href="about.html" class="hover:text-indigo-400 transition">About</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4 text-white">Services</h4>
+                        <ul class="space-y-2 text-slate-400 text-sm">
+                            <li><a href="#" class="hover:text-indigo-400 transition">Web Development</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition">Smart Contracts</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition">Consulting</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4 text-white">Social</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="social-icon" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
+                    <p>&copy; 2024 DevPortfolio. All rights reserved.</p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-indigo-400 transition">Privacy Policy</a>
+                        <a href="#" class="hover:text-indigo-400 transition">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
+            offset: 100
+        });
+
+        // Filter Projects
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden-project');
+                    card.style.animation = 'scaleIn 0.4s ease-out';
+                } else if (card.dataset.category === category) {
+                    card.classList.remove('hidden-project');
+                    card.style.animation = 'scaleIn 0.4s ease-out';
+                } else {
+                    card.classList.add('hidden-project');
+                }
+            });
+
+            // Reinitialize AOS for new elements
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Spotlight effect on mouse move
+        document.querySelectorAll('.spotlight').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', x + '%');
+                card.style.setProperty('--mouse-y', y + '%');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.borderBottomColor = 'rgba(99, 102, 241, 0.3)';
+            } else {
+                navbar.style.borderBottomColor = 'rgba(100, 116, 139, 0.2)';
+            }
+        });
+
+        // Reinitialize AOS on load
+        window.addEventListener('load', () => {
+            AOS.refresh();
+        });
+    </script>
+</body>
+</html>
